@@ -7,10 +7,6 @@ const PUBLIC_ROUTES = ["/"];
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (PUBLIC_ROUTES.includes(pathname)) {
-    return NextResponse.next();
-  }
-
   const { data: session } = await betterFetch<Session>(
     "/api/auth/get-session",
     {
@@ -21,7 +17,13 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  if (!session) {
+  // Already logged in, redirect away from login page
+  if (pathname === "/" && session) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Not logged in, redirect to login
+  if (pathname !== "/" && !session) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
