@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 import {
   useActiveAuthProvider,
   useLogout,
@@ -15,13 +16,12 @@ import {
 } from "@refinedev/core";
 import { LogOutIcon } from "lucide-react";
 
-export const Header = () => {
+export const Header = ({ action }: { action?: ReactNode }) => {
   const { isMobile } = useSidebar();
-
-  return <>{isMobile ? <MobileHeader /> : <DesktopHeader />}</>;
+  return <>{isMobile ? <MobileHeader /> : <DesktopHeader action={action} />}</>;
 };
 
-function DesktopHeader() {
+function DesktopHeader({ action }: { action?: ReactNode }) {
   return (
     <header
       className={cn(
@@ -36,12 +36,15 @@ function DesktopHeader() {
         "border-border",
         "bg-sidebar",
         "pr-3",
-        "justify-end",
-        "z-40"
+        "justify-between", // changed from justify-end
+        "z-40",
       )}
     >
-      <ThemeToggle />
-      <UserDropdown />
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <UserDropdown />
+      </div>
+      <div className="pl-4">{action}</div>
     </header>
   );
 }
@@ -66,7 +69,7 @@ function MobileHeader() {
         "bg-sidebar",
         "pr-3",
         "justify-between",
-        "z-40"
+        "z-40",
       )}
     >
       <SidebarTrigger
@@ -92,7 +95,7 @@ function MobileHeader() {
           {
             "pl-3": !open,
             "pl-5": open,
-          }
+          },
         )}
       >
         <div>{title.icon}</div>
@@ -105,7 +108,7 @@ function MobileHeader() {
             {
               "opacity-0": !open,
               "opacity-100": open,
-            }
+            },
           )}
         >
           {title.text}
