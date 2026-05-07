@@ -128,11 +128,11 @@ function QuickActionsPanel() {
 
 function TeamTodayPanel() {
   const team = [
-    { name: "Pam Beesly", status: "office", role: "Designer" },
-    { name: "Jim Halpert", status: "remote", role: "Sales" },
-    { name: "Dwight Schrute", status: "office", role: "Sales" },
-    { name: "Ryan Howard", status: "off", role: "Temp" },
-    { name: "Angela Martin", status: "remote", role: "Accounting" },
+    { name: 'Salvador "Chava" Iglesias', status: "office", role: "Presidente" },
+    { name: 'Diego "Potro" Romani', status: "remote", role: "Delantero" },
+    { name: "María Luz Reynoso", status: "office", role: "Directora General" },
+    { name: "Cuauhtémoc Iglesias", status: "off", role: "Vicepresidente" },
+    { name: 'Hugo "Canicas" Sánchez', status: "remote", role: "Entrenador" },
   ];
 
   const statusConfig: Record<
@@ -191,31 +191,31 @@ function TeamTodayPanel() {
 function UpcomingPanel() {
   const events = [
     {
-      name: "Ryan Howard",
+      name: 'Diego "Potro" Romani',
       event: "Welcome onboard",
       date: "Today",
       type: "new",
     },
     {
-      name: "Michael Scott",
+      name: 'Salvador "Chava" Iglesias',
       event: "Work Anniversary",
       date: "May 10",
       type: "anniversary",
     },
     {
-      name: "Jim Halpert",
+      name: "Aitor Karanka",
       event: "Work Anniversary",
       date: "May 11",
       type: "anniversary",
     },
     {
-      name: "Meredith Palmer",
+      name: "María Luz Reynoso",
       event: "Happy Birthday",
       date: "May 11",
       type: "birthday",
     },
     {
-      name: "Pam Beesly",
+      name: "Cuauhtémoc Iglesias",
       event: "Happy Birthday",
       date: "May 15",
       type: "birthday",
