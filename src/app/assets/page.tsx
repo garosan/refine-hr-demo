@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Package, Plus, Search } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Asset = {
   id: number;
@@ -76,6 +77,8 @@ const assets: Asset[] = [
 ];
 
 export default function AssetsPage() {
+  const router = useRouter();
+
   const [search, setSearch] = useState("");
 
   const filtered = assets.filter(
@@ -88,7 +91,7 @@ export default function AssetsPage() {
   return (
     <Layout
       action={
-        <Button>
+        <Button onClick={() => router.push("/assets/new")}>
           <Plus className="w-4 h-4 mr-2" />
           Add Asset
         </Button>
