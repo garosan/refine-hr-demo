@@ -10,6 +10,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -21,6 +23,8 @@ import {
   useSidebar as useShadcnSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import {
   useLink,
   useMenu,
@@ -29,6 +33,9 @@ import {
 } from "@refinedev/core";
 import { ChevronRight, ListIcon } from "lucide-react";
 import React from "react";
+import { SidebarFooter } from "@/components/ui/sidebar";
+import { useLogout } from "@refinedev/core";
+import { MoreVertical, LogOut } from "lucide-react";
 
 export function Sidebar() {
   const { open } = useShadcnSidebar();
@@ -52,7 +59,7 @@ export function Sidebar() {
           {
             "px-3": open,
             "px-1": !open,
-          }
+          },
         )}
       >
         {menuItems.map((item: TreeMenuItem) => (
@@ -63,6 +70,7 @@ export function Sidebar() {
           />
         ))}
       </ShadcnSidebarContent>
+      <SidebarUserFooter />
     </ShadcnSidebar>
   );
 }
@@ -112,7 +120,7 @@ function SidebarItemGroup({ item, selectedKey }: MenuItemProps) {
             "opacity-100": open,
             "pointer-events-none": !open,
             "pointer-events-auto": open,
-          }
+          },
         )}
       >
         {getDisplayName(item)}
@@ -144,7 +152,7 @@ function SidebarItemCollapsible({ item, selectedKey }: MenuItemProps) {
         "text-muted-foreground",
         "transition-transform",
         "duration-200",
-        "group-data-[state=open]:rotate-90"
+        "group-data-[state=open]:rotate-90",
       )}
     />
   );
@@ -223,7 +231,7 @@ function SidebarHeader() {
         "flex-row",
         "items-center",
         "justify-between",
-        "overflow-hidden"
+        "overflow-hidden",
       )}
     >
       <div
@@ -240,7 +248,7 @@ function SidebarHeader() {
           {
             "pl-3": !open,
             "pl-5": open,
-          }
+          },
         )}
       >
         <div>{title.icon}</div>
@@ -253,7 +261,7 @@ function SidebarHeader() {
             {
               "opacity-0": !open,
               "opacity-100": open,
-            }
+            },
           )}
         >
           {title.text}
@@ -347,7 +355,7 @@ function SidebarButton({
           "text-sidebar-primary-foreground": isSelected,
           "hover:text-sidebar-primary-foreground": isSelected,
         },
-        className
+        className,
       )}
       onClick={onClick}
       {...props}
@@ -360,6 +368,61 @@ function SidebarButton({
         buttonContent
       )}
     </Button>
+  );
+}
+
+function SidebarUserFooter() {
+  const { open } = useShadcnSidebar();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.push("/");
+  };
+
+  return (
+    <SidebarFooter className="border-t border-border p-3">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex items-center gap-3 cursor-pointer rounded-lg hover:bg-muted px-2 py-2 transition-colors">
+            <div className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold shrink-0">
+              CI
+            </div>
+            {open && (
+              <>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-sm font-medium truncate">
+                    Chava Iglesias
+                  </span>
+                  <span className="text-xs text-muted-foreground truncate">
+                    chava@clubdecuervos.mx
+                  </span>
+                </div>
+                <MoreVertical className="w-4 h-4 text-muted-foreground shrink-0" />
+              </>
+            )}
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="top" align="start" className="w-56">
+          <DropdownMenuLabel>
+            <div className="flex flex-col">
+              <span className="font-medium">Chava Iglesias</span>
+              <span className="text-xs text-muted-foreground font-normal">
+                chava@clubdecuervos.mx
+              </span>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={handleLogout}
+            className="text-destructive focus:text-destructive cursor-pointer"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </SidebarFooter>
   );
 }
 
