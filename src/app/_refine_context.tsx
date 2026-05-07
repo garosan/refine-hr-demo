@@ -10,7 +10,6 @@ import {
   Home,
   User,
   Clock,
-  Calendar,
   BookUser,
   Receipt,
   Package,
@@ -39,7 +38,7 @@ export const RefineContext = ({ children }: RefineContextProps) => {
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
             title: {
-              text: "GaroHR",
+              text: "CuervosHR",
               icon: <Building2 />,
             },
           }}
@@ -66,14 +65,6 @@ export const RefineContext = ({ children }: RefineContextProps) => {
               meta: {
                 label: "Time Off",
                 icon: <Clock />,
-              },
-            },
-            {
-              name: "calendar",
-              list: "/calendar",
-              meta: {
-                label: "Calendar",
-                icon: <Calendar />,
               },
             },
             {

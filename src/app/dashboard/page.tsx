@@ -128,11 +128,15 @@ function QuickActionsPanel() {
 
 function TeamTodayPanel() {
   const team = [
-    { name: 'Salvador "Chava" Iglesias', status: "office", role: "Presidente" },
-    { name: 'Diego "Potro" Romani', status: "remote", role: "Delantero" },
-    { name: "María Luz Reynoso", status: "office", role: "Directora General" },
-    { name: "Cuauhtémoc Iglesias", status: "off", role: "Vicepresidente" },
-    { name: 'Hugo "Canicas" Sánchez', status: "remote", role: "Entrenador" },
+    { name: 'Salvador "Chava" Iglesias', status: "office", role: "President" },
+    { name: 'Diego "Potro" Romani', status: "remote", role: "Team Squad" },
+    { name: "Moisés Suarez", status: "off", role: "Team Squad" },
+    { name: "Aitor Cardoné", status: "office", role: "Team Squad" },
+    { name: "María Luz Reynoso", status: "remote", role: "General Director" },
+    { name: "Cuauhtémoc Iglesias", status: "off", role: "VP" },
+    { name: "Hugo Sánchez", status: "office", role: "Assistant" },
+    { name: "Rafael Reina", status: "remote", role: "Team Squad" },
+    { name: "Félix Domingo", status: "office", role: "Coaching Staff" },
   ];
 
   const statusConfig: Record<
