@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Receipt, Search, CheckCircle2, Clock, XCircle } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Expense = {
   id: number;
@@ -94,6 +95,8 @@ const statusConfig = {
 };
 
 export default function ExpensesPage() {
+  const router = useRouter();
+
   const [search, setSearch] = useState("");
 
   const filtered = expenses.filter((e) =>
@@ -103,7 +106,7 @@ export default function ExpensesPage() {
   return (
     <Layout
       action={
-        <Button>
+        <Button onClick={() => router.push("/expenses/new")}>
           <Receipt className="w-4 h-4 mr-2" />
           Request Expense
         </Button>

@@ -3,6 +3,7 @@
 import { Layout } from "@/components/refine-ui/layout/layout";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/navigation";
 import {
   Mail,
   MapPin,
@@ -37,10 +38,12 @@ function InfoField({
 }
 
 export default function MyInfoPage() {
+  const router = useRouter();
+
   return (
     <Layout
       action={
-        <Button>
+        <Button onClick={() => router.push("/my-info/edit")}>
           <Pencil className="w-4 h-4 mr-2" />
           Edit
         </Button>
