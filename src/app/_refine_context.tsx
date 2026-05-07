@@ -5,7 +5,16 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import React from "react";
 
 import routerProvider from "@refinedev/nextjs-router";
-
+import {
+  Building2,
+  Home,
+  User,
+  Clock,
+  Calendar,
+  BookUser,
+  Receipt,
+  Package,
+} from "lucide-react";
 import { Toaster } from "@/components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "@/components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "@/components/refine-ui/theme/theme-provider";
@@ -29,14 +38,67 @@ export const RefineContext = ({ children }: RefineContextProps) => {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
+            title: {
+              text: "GaroHR",
+              icon: <Building2 />,
+            },
           }}
           resources={[
+            {
+              name: "dashboard",
+              list: "/dashboard",
+              meta: {
+                label: "Home",
+                icon: <Home />,
+              },
+            },
+            {
+              name: "my-info",
+              list: "/my-info",
+              meta: {
+                label: "My Info",
+                icon: <User />,
+              },
+            },
+            {
+              name: "time-off",
+              list: "/time-off",
+              meta: {
+                label: "Time Off",
+                icon: <Clock />,
+              },
+            },
+            {
+              name: "calendar",
+              list: "/calendar",
+              meta: {
+                label: "Calendar",
+                icon: <Calendar />,
+              },
+            },
             {
               name: "employees",
               list: "/employees",
               show: "/employees/show/:id",
               meta: {
-                label: "Employees",
+                label: "Directory",
+                icon: <BookUser />,
+              },
+            },
+            {
+              name: "expenses",
+              list: "/expenses",
+              meta: {
+                label: "Expenses",
+                icon: <Receipt />,
+              },
+            },
+            {
+              name: "assets",
+              list: "/assets",
+              meta: {
+                label: "Assets",
+                icon: <Package />,
               },
             },
           ]}

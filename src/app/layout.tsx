@@ -1,6 +1,22 @@
 import type { Metadata } from "next";
 import React, { Suspense } from "react";
+import { Inter, Lora, JetBrains_Mono } from "next/font/google";
 import { RefineContext } from "./_refine_context";
+
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const fontSerif = Lora({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
+
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Refine",
@@ -17,7 +33,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}
+      >
         <Suspense>
           <RefineContext>{children}</RefineContext>
         </Suspense>
