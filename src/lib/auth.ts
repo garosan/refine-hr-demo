@@ -8,4 +8,5 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  trustedOrigins: ["https://refine-hr-demo.vercel.app"],
 });
