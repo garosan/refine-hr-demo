@@ -1,7 +1,5 @@
-"use client";
+import { dataProvider } from "@refinedev/supabase";
+import { supabase } from "@/lib/supabase";
 
-import dataProviderSimpleRest from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const dataProvider = dataProviderSimpleRest(API_URL);
+export { dataProvider };
+export const dataProviderInstance = dataProvider(supabase);

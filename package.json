@@ -50,6 +50,7 @@
     "@refinedev/react-router": "^2.0.0",
     "@refinedev/react-table": "^6.0.0",
     "@refinedev/simple-rest": "^6.0.0",
+    "@refinedev/supabase": "^6.0.2",
     "@supabase/supabase-js": "^2.105.3",
     "@tailwindcss/vite": "^4.1.8",
     "@tanstack/react-table": "^8.2.6",
