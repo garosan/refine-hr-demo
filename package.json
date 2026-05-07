@@ -87,6 +87,7 @@
     "@types/react-dom": "^19.1.0",
     "better-auth": "^1.6.9",
     "cross-env": "^7.0.3",
+    "dotenv": "^17.4.2",
     "eslint": "^8",
     "eslint-config-next": "^15.0.3",
     "postcss": "^8",
